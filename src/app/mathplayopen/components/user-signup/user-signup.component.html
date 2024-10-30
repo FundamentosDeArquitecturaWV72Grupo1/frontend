@@ -1,1 +1,53 @@
-<p>user-signup works!</p>
+<div class="rounded-box">
+  <div class="left-side">
+    <img src="assets/signin-image-1.png" alt="loginimage" width="546px" height="484px">
+  </div>
+  <div class="right-side">
+    <div class="form-container">
+      <img src="assets/logoApp.png" alt="logoapp" width="200px" height="176px">
+
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="userData.fullname" #fullname="ngModel" required minlength="3" maxlength="20">
+        @if (fullname.invalid && fullname.touched){
+          <mat-error>Por favor, introduce un nombre válido.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <input matInput [(ngModel)]="userData.email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        @if (email.invalid && email.touched){
+          <mat-error>Por favor, introduce un correo válido.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input matInput [(ngModel)]="userData.username" #username="ngModel" required minlength="3" maxlength="10">
+        @if (username.invalid && username.touched){
+          <mat-error>Por favor, introduce un usuario válido.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="userData.password" #password="ngModel" required minlength="8">
+        @if (password.invalid && password.touched){
+          <mat-error>Por favor, introduce una contraseña válida.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Elige tu rol</mat-label>
+        <mat-select [(ngModel)]="selectedRole" required #role="ngModel">
+          @for (rol of rols; track rol) {
+            <mat-option [value]="rol.value">{{rol.viewValue}}</mat-option>
+          }
+        </mat-select>
+        @if (role.invalid && role.touched){
+          <mat-error>Por favor, selecciona un rol.</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-raised-button class="register" (click)="registerUser()">Registrarse</button>
+      <a class="have-account" (click)="redirectToLogin()">Ya tengo cuenta</a>
+    </div>
+  </div>
+</div>

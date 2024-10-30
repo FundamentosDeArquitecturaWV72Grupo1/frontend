@@ -1,1 +1,21 @@
-<p>user-signin works!</p>
+<div class="rounded-box">
+  <div class="right-side">
+    <div class="form-container">
+      <img src="assets/logoApp.png" alt="logoapp" width="200" height="176">
+      @if (errorMessage!==""){
+        <p style="color: #fa4e4e">{{errorMessage}}</p>
+      }
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <input matInput [(ngModel)]="email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" [(ngModel)]="password">
+      </mat-form-field>
+      <button mat-raised-button class="login-button" (click)="loginUser()">Iniciar sesión</button>
+      <p class="forgot-password" (click)="redirectToPasswordRecovery()">¿Olvidaste tu contraseña?</p>
+      <a class="create-account" (click)="redirectToSignin()">Crear cuenta</a>
+    </div>
+  </div>
+</div>
