@@ -1,6 +1,13 @@
+@if (showSidebar && load != null) {
 <div class="container">
-  <app-sidebar class="app-sidebar"></app-sidebar>
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
+    <app-sidebar class="app-sidebar"></app-sidebar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
 </div>
+} @else {
+  <router-outlet></router-outlet>
+}
+
+
