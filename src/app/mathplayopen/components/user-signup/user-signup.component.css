@@ -1,0 +1,68 @@
+/* Contenedor principal del formulario */
+.rounded-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f3f4f6;
+  padding: 20px;
+}
+
+/* Contenedor del formulario con sombra y bordes redondeados */
+.form-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Logo del formulario */
+.form-container img {
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+/* Campos del formulario con espacio adecuado */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-error {
+  color: #fa4e4e;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Botón de registro estilizado */
+.register {
+  width: 100%;
+  background-color: #6200ee;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.register:hover {
+  background-color: #3700b3;
+}
+
+/* Enlace de cuenta existente */
+.have-account {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #6200ee;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.have-account:hover {
+  text-decoration: underline;
+}

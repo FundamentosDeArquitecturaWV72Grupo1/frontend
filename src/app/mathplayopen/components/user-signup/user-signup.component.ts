@@ -6,6 +6,10 @@ import {MatOption, MatSelectModule} from '@angular/material/select';
 import {Router} from '@angular/router';
 import {UsersApiService} from '../../services/users-api.service';
 import {User} from '../../models/user.entity';
+import {StudentsApiService} from "../../services/students-api.service";
+import {TeachersApiService} from "../../services/teachers-api.service";
+import {Student} from "../../models/student.entity";
+import {Teacher} from "../../models/teacher.entity";
 
 interface Rol {
   value: string;
@@ -50,7 +54,7 @@ export class UserSignupComponent {
   ];
 
   redirectToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/sign-in']);
   }
 
   registerUser() {
