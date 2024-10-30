@@ -1,0 +1,11 @@
+<div class="bg-banner">
+  <div class="content">
+    <h1 class="title">Noticias</h1>
+    <p class="description">Bienvenido a nuestra sección de noticias educativas, donde te mantenemos al tanto de los últimos desarrollos en el mundo de la educación. Aquí encontrarás artículos, informes y análisis sobre tendencias educativas, innovaciones pedagógicas, políticas educativas y eventos relevantes..</p>
+  </div>
+  <img class="image" src="https://cdn-icons-png.flaticon.com/512/3184/3184154.png" alt="imagen" />
+</div>
+
+<div id="news-container">
+  <app-card-news *ngFor="let article of news" [article]="article"></app-card-news>
+</div>

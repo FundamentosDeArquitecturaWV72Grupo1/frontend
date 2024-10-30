@@ -1,0 +1,12 @@
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: #192044;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 15px;
+  margin-left: var(--sidebar-width);
+}
