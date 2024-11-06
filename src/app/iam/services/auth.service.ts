@@ -1,0 +1,96 @@
+import { Injectable } from '@angular/core';
+import {BehaviorSubject, Observable, tap, throwError} from 'rxjs';
+import {AuthCredentials, AuthResponse} from '../model/auth.models';
+import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../../environments/environment.development';
+import { catchError } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private apiUrl = `${environment.serverBasePath}/authentication`;
+  private currentUserSubject = new BehaviorSubject<AuthResponse | null>(null);
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.checkInitialAuth();
+  }
+
+  private checkInitialAuth(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.isAuthenticatedSubject.next(true);
+    }
+  }
+
+  get isAuthenticated$() {
+    return this.isAuthenticatedSubject.asObservable();
+  }
+
+  get currentUser$() {
+    return this.currentUserSubject.asObservable();
+  }
+
+  signIn(credentials: AuthCredentials): Observable<AuthResponse> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    };
+
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/sign-in`,
+      credentials,
+      httpOptions
+    ).pipe(
+      tap(response => this.handleAuthSuccess(response)),
+      catchError(error => this.handleAuthError(error))
+    );
+  }
+
+  signUp(credentials: AuthCredentials): Observable<AuthResponse> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true
+    };
+
+    return this.http.post<AuthResponse>(
+      `${this.apiUrl}/sign-up`,
+      credentials,
+      httpOptions
+    ).pipe(
+      tap(response => this.handleAuthSuccess(response)),
+      catchError(error => this.handleAuthError(error))
+    );
+  }
+
+  private handleAuthSuccess(response: AuthResponse): void {
+    console.log('Auth Success - Saving token:', response.token);
+    localStorage.setItem('token', response.token);
+    this.currentUserSubject.next(response);
+    this.isAuthenticatedSubject.next(true);
+  }
+
+  private handleAuthError(error: any): Observable<never> {
+    console.error('Auth error:', error);
+    this.signOut();
+    return throwError(() => error);
+  }
+
+  signOut(): void {
+    localStorage.removeItem('token');
+    this.currentUserSubject.next(null);
+    this.isAuthenticatedSubject.next(false);
+    this.router.navigate(['/sign-in']);
+  }
+}

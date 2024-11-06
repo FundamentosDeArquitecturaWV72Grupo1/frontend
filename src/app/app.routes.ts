@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import {UserSigninComponent} from './mathplayopen/components/user-signin/user-signin.component';
-import {UserSignupComponent} from './mathplayopen/components/user-signup/user-signup.component';
+import {UserSigninComponent} from './iam/pages/user-signin/user-signin.component';
+import {UserSignupComponent} from './iam/pages/user-signup/user-signup.component';
 import {NewsComponent} from './mathplayopen/pages/news/news.component';
 import {ProfileComponent} from './mathplayopen/pages/profile/profile.component';
 

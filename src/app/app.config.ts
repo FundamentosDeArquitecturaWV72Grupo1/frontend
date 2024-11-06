@@ -3,12 +3,24 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {provideHttpClient, withFetch} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withFetch} from '@angular/common/http';
+import {AuthInterceptor} from './iam/services/auth.interceptor';
+import {AuthService} from './iam/services/auth.service';
+import {InstitutionService} from './iam/services/institution.service';
+import {StudentService} from './iam/services/student.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch()), provideAnimationsAsync(), provideAnimationsAsync()
+    provideHttpClient(withFetch()), provideAnimationsAsync(), provideAnimationsAsync(),
+    AuthService,
+    InstitutionService,
+    StudentService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 };

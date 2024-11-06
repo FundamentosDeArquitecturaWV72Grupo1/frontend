@@ -1,0 +1,58 @@
+import {Injectable} from '@angular/core';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import {Observable, tap} from 'rxjs';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  constructor() {}
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
+    console.log('Interceptor - URL:', request.url);
+    console.log('Interceptor - Token present:', !!token);
+
+    let modifiedRequest = request.clone({
+      withCredentials: true,
+      headers: request.headers
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+    });
+
+    if (token) {
+      modifiedRequest = modifiedRequest.clone({
+        headers: modifiedRequest.headers.set('Authorization', `Bearer ${token}`)
+      });
+      console.log('Interceptor - Final headers:', modifiedRequest.headers.keys());
+      console.log('Interceptor - Authorization Header:', modifiedRequest.headers.get('Authorization'));
+    }
+
+    return next.handle(modifiedRequest).pipe(
+      tap({
+        next: (event) => {
+          if (event instanceof HttpResponse) {
+            console.log('Response:', {
+              url: event.url,
+              status: event.status
+            });
+          }
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            console.log('Request failed:', {
+              url: error.url,
+              status: error.status,
+              message: error.message
+            });
+          }
+        }
+      })
+    );
+  }
+}

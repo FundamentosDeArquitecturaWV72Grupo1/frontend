@@ -1,0 +1,10 @@
+export interface AuthCredentials {
+  username: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  id: number;
+  username: string;
+  token: string;
+}

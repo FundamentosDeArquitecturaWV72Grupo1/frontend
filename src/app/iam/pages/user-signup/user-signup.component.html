@@ -1,0 +1,86 @@
+<div class="rounded-box">
+  <div class="form-container">
+    <img src="../../../../assets/logoApp.png" alt="logoapp" width="200px" height="176px">
+
+    <!-- Paso 1: Credenciales -->
+    <div *ngIf="step === 1">
+      <form [formGroup]="credentialsForm" (ngSubmit)="onCredentialsSubmit()">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username">
+          <mat-error *ngIf="credentialsForm.get('username')?.invalid">
+            Username es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="credentialsForm.get('password')?.invalid">
+            La contraseña debe tener al menos 6 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="role">
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{role === 'ROLE_STUDENT' ? 'Estudiante' : 'Instructor'}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          Continuar
+        </button>
+      </form>
+    </div>
+
+    <!-- Paso 2: Detalles del Estudiante -->
+    <div *ngIf="step === 2">
+      <form [formGroup]="studentDetailsForm" (ngSubmit)="onStudentDetailsSubmit()">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="firstName">
+          <mat-error *ngIf="studentDetailsForm.get('firstName')?.invalid">
+            Nombre es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-error *ngIf="studentDetailsForm.get('lastName')?.invalid">
+            Apellido es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="studentDetailsForm.get('email')?.invalid">
+            Email válido es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Institución</mat-label>
+          <mat-select formControlName="institutionId">
+            <mat-option *ngFor="let institution of institutions; let i = index" [value]="i + 1">
+              {{institution.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="studentDetailsForm.get('institutionId')?.invalid">
+            Institución es requerida
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          Registrarse
+        </button>
+      </form>
+    </div>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</div>
