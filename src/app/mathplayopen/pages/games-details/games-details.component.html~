@@ -1,0 +1,12 @@
+<mat-card *ngIf="game" class="game-detail-card">
+  <mat-card-content>
+    <div class="embed-container">
+      <div [innerHTML]="safeEmbedCode"></div>
+    </div>
+    <h3>{{game.title}}</h3>
+    <p>{{ game.description }}</p>
+    <p><strong>Topic:</strong> {{ game.topic }}</p>
+    <p><strong>Rules:</strong> {{ game.rules }}</p>
+  </mat-card-content>
+  <button mat-button (click)="goBack()">Back to Game List</button>
+</mat-card>

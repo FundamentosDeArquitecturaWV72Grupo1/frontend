@@ -4,7 +4,6 @@ import {UserSignupComponent} from './iam/pages/user-signup/user-signup.component
 import {NewsComponent} from './mathplayopen/pages/news/news.component';
 import {ProfileComponent} from './mathplayopen/pages/profile/profile.component';
 import {GamesComponent} from './mathplayopen/pages/games/games.component';
-import {GamesDetailsComponent} from './mathplayopen/pages/games-details/games-details.component';
 
 export const routes: Routes = [
   { path: 'news', component: NewsComponent},
@@ -12,6 +11,6 @@ export const routes: Routes = [
   { path: 'sign-in', component: UserSigninComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'games', component: GamesComponent},
-  {path: 'games/:id', component: GamesDetailsComponent},
+  {path: 'games/:id', component: GamesComponent},
   { path: '', redirectTo: 'sign-in', pathMatch: 'full'}
 ];

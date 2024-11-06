@@ -1,0 +1,9 @@
+<div class="game-list">
+  <mat-card *ngFor="let game of games" (click)="goToGameDetail(game.id)" class="game-card">
+    <img mat-card-image [src]="game.image" alt="{{ game.title }}">
+    <mat-card-content>
+      <h3>{{ game.title }}</h3>
+      <p>{{ game.topic }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

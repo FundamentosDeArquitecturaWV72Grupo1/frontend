@@ -1,0 +1,42 @@
+import {Component, OnInit} from '@angular/core';
+import {Game} from '../../models/game.entity';
+import {GamesService} from '../../services/games.service';
+import {Router} from '@angular/router';
+import {MatCard, MatCardContent, MatCardImage, MatCardModule} from '@angular/material/card';
+import {CommonModule, NgForOf} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {MatButtonModule} from '@angular/material/button';
+
+@Component({
+  selector: 'app-games',
+  standalone: true,
+  imports: [
+    MatCard,
+    MatCardContent,
+    MatCardImage,
+    NgForOf,
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    HttpClientModule,
+  ],
+  templateUrl: './games.component.html',
+  styleUrl: './games.component.css'
+})
+export class GamesComponent implements OnInit{
+  games: Game[] = [];
+
+  constructor(private gameService: GamesService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.gameService.getAllGames().subscribe(
+      (data) => this.games = data,
+      (error) => console.error('Error fetching games', error)
+    );
+  }
+
+  goToGameDetail(gameId: number): void {
+    this.router.navigate(['/game', gameId]);
+  }
+}

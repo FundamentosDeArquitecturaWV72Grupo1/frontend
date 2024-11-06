@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {Game} from '../models/game.entity';
+import {environment} from '../../../environments/environment.development';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class GamesService {
+  private apiUrl = `${environment.serverBasePath}/games/all`;
+  private baseUrl = `${environment.serverBasePath}/games`;
+
+  constructor(private http: HttpClient) {}
+
+  getAllGames(): Observable<Game[]> {
+    return this.http.get<Game[]>(this.apiUrl).pipe(
+      map(games => games.map(game => ({
+        ...game,
+        embedCode: this.cleanEmbedCode(game.embedCode)
+      })))
+    );
+  }
+
+  private cleanEmbedCode(embedCode: string): string {
+    return embedCode.replace(/\\/g, '');
+  }
+
+  getGameById(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.baseUrl}/${id}`);
+  }
+}

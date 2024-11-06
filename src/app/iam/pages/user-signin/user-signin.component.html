@@ -9,26 +9,26 @@
 
       <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="form-field">
-          <mat-label>Correo</mat-label>
+          <mat-label>Username</mat-label>
           <input matInput formControlName="username">
           <mat-error *ngIf="signInForm.get('username')?.invalid && signInForm.get('username')?.touched">
-            Correo es requerido
+            username is required
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="form-field">
-          <mat-label>Contraseña</mat-label>
+          <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
           <mat-error *ngIf="signInForm.get('password')?.invalid && signInForm.get('password')?.touched">
-            Contraseña es requerida
+            password is required
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button class="login-button" type="submit">Iniciar sesión</button>
+        <button mat-raised-button class="login-button" type="submit">Login</button>
       </form>
 
-      <p class="forgot-password" (click)="redirectToPasswordRecovery()">¿Olvidaste tu contraseña?</p>
-      <a class="create-account" (click)="redirectToSignUp()">Crear cuenta</a>
+      <p class="forgot-password" (click)="redirectToPasswordRecovery()">Forgot your password?</p>
+      <a class="create-account" (click)="redirectToSignUp()">Create account</a>
     </div>
   </div>
 </div>

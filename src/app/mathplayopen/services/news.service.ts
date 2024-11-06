@@ -6,7 +6,7 @@ import {map, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class NewsService {
-  private apiUrl = 'https://newsapi.org/v2/everything?q=educacion&apiKey=MyApiKey';
+  private apiUrl = 'https://newsapi.org/v2/everything?q=educacion&apiKey=01db9066d51f41b9bb700599b2611e38';
 
   constructor(private http: HttpClient) {}
 

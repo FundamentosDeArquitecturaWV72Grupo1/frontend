@@ -6,11 +6,11 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersApiService extends BaseService<User>{
+export class UsersApiService {
 
   constructor(private http: HttpClient) {
-    super(http);
-    this.resourceEndpoint = '/users';
+    //super(http);
+    //this.resourceEndpoint = '/users';
   }
 
 }

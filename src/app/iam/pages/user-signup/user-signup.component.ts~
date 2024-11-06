@@ -75,6 +75,7 @@ export class UserSignupComponent implements OnInit{
     this.institutionService.getAllInstitutions().subscribe({
       next: (institutions) => {
         this.institutions = institutions;
+        console.log('Institutions loaded:', this.institutions);
       },
       error: (error) => {
         console.error('Error loading institutions:', error);
@@ -86,12 +87,15 @@ export class UserSignupComponent implements OnInit{
   onCredentialsSubmit(): void {
     if (this.credentialsForm.valid) {
       const username = this.credentialsForm.get('username')?.value;
+      console.log('Username captured:', username);
 
       const credentials: AuthCredentials = {
         username: username,
         password: this.credentialsForm.get('password')?.value,
         roles: [this.credentialsForm.get('role')?.value]
       };
+
+      console.log('Credentials to send:', credentials);
 
       this.authService.signUp(credentials).pipe(
         tap(response => {
@@ -124,7 +128,10 @@ export class UserSignupComponent implements OnInit{
         email: this.studentDetailsForm.get('email')?.value,
         institutionId: this.studentDetailsForm.get('institutionId')?.value,
       };
+
       const token = localStorage.getItem('token');
+      console.log('Token before student registration:', token);
+      console.log('Student data to send:', studentData);
 
       if (!token) {
         this.errorMessage = 'No authentication token found';

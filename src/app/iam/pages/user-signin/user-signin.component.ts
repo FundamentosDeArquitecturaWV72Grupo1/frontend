@@ -48,17 +48,17 @@ export class UserSigninComponent implements OnInit{
           this.router.navigate(['/news']);
         },
         error: (error) => {
-          this.errorMessage = 'Error en las credenciales';
+          this.errorMessage = 'Credentials error';
           console.error('Error:', error);
         }
       });
     } else {
-      this.errorMessage = 'Por favor, complete todos los campos correctamente.';
+      this.errorMessage = 'Please complete all fields correctly.';
     }
   }
 
   redirectToPasswordRecovery() {
-    //this.authService.signOut()
+    this.authService.signOut()
     this.router.navigate(['/password-recovery']);
   }
 
