@@ -8,5 +8,12 @@
     <p><strong>Topic:</strong> {{ game.topic }}</p>
     <p><strong>Rules:</strong> {{ game.rules }}</p>
   </mat-card-content>
-  <button mat-button (click)="goBack()">Back to Game List</button>
+
+  <button mat-button class="back-button" (click)="goBack()">Back to Game List</button>
+
+  <div class="reviews-section">
+    <app-create-review [gameId]="game.id"></app-create-review>
+    <h2>Reviews</h2>
+    <app-review-list [gameId]="game.id"></app-review-list>
+  </div>
 </mat-card>

@@ -9,11 +9,10 @@
 }
 
 .game-detail-card {
-  background-color: #1E2A38;
+  background-color: #192044;
   color: #ffffff;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .game-detail-card h3 {
@@ -54,8 +53,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* iframe ocupe el 100% del contenedor */
-  height: 100%; /* iframe ocupe el 100% del contenedor */
+  width: 100%; /* iframe el 100% del contenedor */
+  height: 100%; /* iframe el 100% del contenedor */
   border: none;
   border-radius: 15px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -70,4 +69,16 @@
   margin-top: 50px;
   font-size: 20px;
   font-weight: bolder;
+}
+
+.reviews-section {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.reviews-section h2 {
+  color: #FFAB40;
+  padding-top: 50px;
+  padding-bottom: 30px;
 }

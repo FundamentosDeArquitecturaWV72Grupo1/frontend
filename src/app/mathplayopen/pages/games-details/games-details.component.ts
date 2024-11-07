@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Game} from '../../models/game.entity';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {GamesService} from '../../services/games.service';
 import {MatCard, MatCardContent, MatCardModule, MatCardTitle} from '@angular/material/card';
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {BrowserModule, DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
+import {ReviewListComponent} from '../review-list/review-list.component';
+import {CreateReviewComponent} from '../create-review/create-review.component';
 
 @Component({
   selector: 'app-games-details',
@@ -20,13 +22,17 @@ import {CommonModule} from '@angular/common';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
+    RouterLink,
+    ReviewListComponent,
+    CreateReviewComponent,
   ],
   templateUrl: './games-details.component.html',
   styleUrl: './games-details.component.css'
 })
 export class GamesDetailsComponent implements OnInit{
   game: Game | null = null;
-  safeEmbedCode: SafeHtml | null = null;
+  safeEmbedCode: SafeHtml | null = null
+  @ViewChild(ReviewListComponent) reviewListComponent!: ReviewListComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,5 +56,9 @@ export class GamesDetailsComponent implements OnInit{
 
   goBack(): void {
     this.router.navigate(['/games']);
+  }
+
+  reloadReviews(): void {
+    this.reviewListComponent.loadReviews();
   }
 }

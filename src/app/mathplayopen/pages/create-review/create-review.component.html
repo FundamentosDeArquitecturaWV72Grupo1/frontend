@@ -1,0 +1,16 @@
+<div class="create-review-container">
+  <h3>Add Your Review</h3>
+  <form (ngSubmit)="submitReview()">
+    <mat-form-field class="full-width">
+      <mat-label>Score (1-5)</mat-label>
+      <input matInput type="number" [(ngModel)]="score" name="score" min="1" max="5" required />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="description" name="description" rows="3" required></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit Review</button>
+  </form>
+</div>

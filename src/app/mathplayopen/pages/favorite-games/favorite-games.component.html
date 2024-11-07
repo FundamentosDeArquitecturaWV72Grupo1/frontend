@@ -1,0 +1,15 @@
+<div class="favorite-games-list">
+  <h2>My Favorite Games</h2>
+  <mat-card *ngFor="let favorite of favoriteGames" (click)="goToGameDetail(favorite.id)" class="game-card">
+    <div class="game-card-content">
+      <img mat-card-image [src]="favorite.image" alt="{{ favorite.title }}" class="game-image">
+      <div class="game-info">
+        <h3>{{ favorite.title }}</h3>
+        <p>{{ favorite.topic }}</p>
+      </div>
+      <button mat-icon-button (click)="removeFromFavorites(favorite.id); $event.stopPropagation()" class="remove-btn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</div>

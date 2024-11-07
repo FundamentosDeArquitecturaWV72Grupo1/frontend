@@ -1,0 +1,23 @@
+.create-review-container {
+  background-color: #192044;
+  color: #ffffff;
+  padding: 15px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+.create-review-container h3 {
+  color: #FFAB40;
+  padding-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 30px;
+}
+
+button {
+  margin-top: 10px;
+}

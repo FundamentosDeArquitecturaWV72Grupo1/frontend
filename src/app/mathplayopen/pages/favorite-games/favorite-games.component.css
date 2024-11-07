@@ -1,0 +1,72 @@
+.favorite-games-list {
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.favorite-games-list h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #20295b;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.game-image {
+  width: 80px; /* Ajustar el tamaño de la imagen */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 15px; /* Espacio entre la imagen y el contenido */
+}
+
+.game-info {
+  flex-grow: 1;
+  color: #ffffff;
+}
+
+.game-info h3 {
+  font-size: 1.2rem;
+  color: #FFAB40;
+}
+
+.game-info p {
+  font-size: 1rem;
+  color: #90A4AE;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #FFAB40;
+  cursor: pointer;
+}
+
+.remove-btn mat-icon {
+  font-size: 1.5rem;
+}
+
+.remove-btn:hover {
+  color: #FF6347;
+}

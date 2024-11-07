@@ -44,10 +44,3 @@ mat-card-content p {
   color: #90A4AE;
 }
 
-.favorite-icon {
-  color: red; /* Color rojo cuando el juego es favorito */
-}
-
-.non-favorite-icon {
-  color: #ffffff; /* Color gris cuando el juego no es favorito */
-}

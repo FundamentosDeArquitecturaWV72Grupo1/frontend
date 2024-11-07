@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
 import {Game} from '../models/game.entity';
 import {environment} from '../../../environments/environment.development';
@@ -10,6 +10,7 @@ import {environment} from '../../../environments/environment.development';
 export class GamesService {
   private apiUrl = `${environment.serverBasePath}/games/all`;
   private baseUrl = `${environment.serverBasePath}/games`;
+  private favoritesUrl = `${environment.serverBasePath}/games/student/favorite-game`;
 
   constructor(private http: HttpClient) {}
 
@@ -28,5 +29,21 @@ export class GamesService {
 
   getGameById(id: number): Observable<Game> {
     return this.http.get<Game>(`${this.baseUrl}/${id}`);
+  }
+
+  /*Favorites*/
+  markAsFavorite(gameId: number): Observable<Game> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    return this.http.post<Game>(`${this.favoritesUrl}/${gameId}`, {}, { headers: headers });
+  }
+  removeFromFavorites(gameId: number): Observable<void> {
+    return this.http.delete<void>(`${this.favoritesUrl}/${gameId}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
+  }
+  getFavoriteGames(): Observable<Game[]> {
+    return this.http.get<Game[]>(`${this.favoritesUrl}/all`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
   }
 }
