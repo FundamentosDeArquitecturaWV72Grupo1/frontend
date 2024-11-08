@@ -31,7 +31,7 @@ import {interval, Observable, Subscription} from 'rxjs';
   templateUrl: './games-details.component.html',
   styleUrl: './games-details.component.css'
 })
-export class GamesDetailsComponent implements OnInit, OnDestroy{
+export class GamesDetailsComponent implements OnInit{
   game: Game | null = null;
   safeEmbedCode: SafeHtml | null = null
   @ViewChild(ReviewListComponent) reviewListComponent!: ReviewListComponent;
@@ -81,7 +81,7 @@ export class GamesDetailsComponent implements OnInit, OnDestroy{
       }
     });
   }
-
+  
   updateScore(): void {
     this.scoreService.updateScore(this.score).subscribe(
       () => {
@@ -89,12 +89,6 @@ export class GamesDetailsComponent implements OnInit, OnDestroy{
       },
       (error) => console.error('Error updating score', error)
     );
-  }
-
-  ngOnDestroy(): void {
-    if (this.scoreSubscription) {
-      this.scoreSubscription.unsubscribe(); // Limpiar la suscripción al salir del componente
-    }
   }
 
 }

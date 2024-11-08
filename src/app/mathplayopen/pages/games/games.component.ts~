@@ -9,7 +9,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {ScoresService} from '../../services/scores.service';
 import {Observable} from 'rxjs';
-import {GameScore} from '../../models/score.entity';
 
 @Component({
   selector: 'app-games',
@@ -61,7 +60,7 @@ export class GamesComponent implements OnInit{
 
   loadCurrentScore(): void {
     this.scoreService.getCurrentScore().subscribe(
-      (scoreData: GameScore) => this.currentScore = scoreData.score,
+      (score) => this.currentScore = score,
       (error) => console.error('Error fetching current score', error)
     );
   }

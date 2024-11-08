@@ -10,6 +10,7 @@ import {InstitutionService} from './iam/services/institution.service';
 import {StudentService} from './iam/services/student.service';
 import {GamesService} from './mathplayopen/services/games.service';
 import {ReviewsService} from './mathplayopen/services/reviews.service';
+import {ScoresService} from './mathplayopen/services/scores.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     StudentService,
     GamesService,
     ReviewsService,
+    ScoresService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

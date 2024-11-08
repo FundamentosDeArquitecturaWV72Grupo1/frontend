@@ -7,3 +7,4 @@ export interface Game {
   rules: string;
   topic: string;
 }
+

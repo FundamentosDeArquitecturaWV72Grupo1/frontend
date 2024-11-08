@@ -1,15 +1,19 @@
 <mat-card *ngIf="game" class="game-detail-card">
+  <button mat-button class="back-button" (click)="goBack()">Back to Game List</button>
   <mat-card-content>
+    <h3>{{game.title}}</h3>
+    <div class="score-display">
+      <h2>Current Score: {{ score }}</h2>
+    </div>
+
     <div class="embed-container">
       <div [innerHTML]="safeEmbedCode"></div>
     </div>
-    <h3>{{game.title}}</h3>
+
     <p>{{ game.description }}</p>
     <p><strong>Topic:</strong> {{ game.topic }}</p>
     <p><strong>Rules:</strong> {{ game.rules }}</p>
   </mat-card-content>
-
-  <button mat-button class="back-button" (click)="goBack()">Back to Game List</button>
 
   <div class="reviews-section">
     <app-create-review [gameId]="game.id" (reviewCreated)="reloadReviews()"></app-create-review>

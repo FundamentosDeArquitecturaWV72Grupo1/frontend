@@ -37,7 +37,7 @@
 
 /* Embed container */
 .game-detail-card .embed-container {
-  width: 69%; /* Ajustar el ancho del contenedor del embebido */
+  width: 69%; /* Ancho del contenedor del embebido */
   max-width: 100%; /* Asegurar que no se exceda del 100% de ancho */
   padding-bottom: 0.2%;
   position: relative;
@@ -81,4 +81,15 @@
   color: #FFAB40;
   padding-top: 50px;
   padding-bottom: 30px;
+}
+
+.score-display {
+  background-color: #FFAB40;
+  color: #192044;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }

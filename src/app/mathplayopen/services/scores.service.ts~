@@ -1,0 +1,39 @@
+import { Injectable } from '@angular/core';
+import {environment} from '../../../environments/environment.development';
+import {catchError, Observable, throwError} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {GameScore} from '../models/score.entity';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ScoresService {
+  private baseUrl = `${environment.serverBasePath}/scores`;
+
+  constructor(private http: HttpClient) {}
+
+  updateScore(score: number): Observable<void> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+
+    const httpOptions = {
+      headers: headers,
+      withCredentials: true
+    };
+    return this.http.patch<void>(`${this.baseUrl}/update?score=${score}`, null, httpOptions)
+      .pipe(
+        catchError(error => {
+          console.error('Error updating score:', error);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  getCurrentScore(): Observable<GameScore> {
+    const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
+    return this.http.get<GameScore>(`${this.baseUrl}/current`, { headers });
+  }
+}

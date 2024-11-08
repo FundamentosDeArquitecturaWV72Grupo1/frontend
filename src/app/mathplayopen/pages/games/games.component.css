@@ -51,3 +51,10 @@ mat-card-content p {
 .non-favorite-icon {
   color: #ffffff; /* Color gris cuando el juego no es favorito */
 }
+
+.score-display {
+  text-align: center;
+  margin-top: 20px;
+  color: #ffffff;
+  font-weight: bolder;
+}
