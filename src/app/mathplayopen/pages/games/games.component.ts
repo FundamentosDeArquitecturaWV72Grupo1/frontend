@@ -67,7 +67,12 @@ export class GamesComponent implements OnInit{
   }
 
   goToGameDetail(gameId: number): void {
-    this.router.navigate(['/games', gameId]);
+    //this.router.navigate(['/games', gameId]);
+    this.router.navigate(['/games', gameId]).then(() => {
+      this.router.events.subscribe(() => {
+        this.loadCurrentScore();
+      });
+    });
   }
 
   toggleFavorite(gameId: number): void {

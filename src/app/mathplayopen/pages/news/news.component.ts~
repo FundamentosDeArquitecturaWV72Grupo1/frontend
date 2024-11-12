@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CardNewsComponent} from '../../components/card-news/card-news.component';
 import {NewsService} from '../../services/news.service';
 import {HttpClientModule} from '@angular/common/http';
-import {CommonModule, DatePipe, NgForOf, NgIf} from '@angular/common';
+import {NgForOf} from '@angular/common';
 import {News} from '../../models/news.entity';
 
 @Component({
@@ -11,10 +11,7 @@ import {News} from '../../models/news.entity';
   imports: [
     CardNewsComponent,
     HttpClientModule,
-    NgForOf,
-    NgIf,
-    DatePipe,
-    CommonModule
+    NgForOf
   ],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'

@@ -1,5 +1,5 @@
 <div class="user-profile">
-  <h2>User Profile</h2>
+  <h2>Profile</h2>
   <div class="profile-info">
     <img [src]="defaultImage" alt="Imagen de perfil" class="profile-image" />
     <div class="user-details">

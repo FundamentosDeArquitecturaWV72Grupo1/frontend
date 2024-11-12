@@ -14,6 +14,6 @@
     <p><strong>Autor:</strong> {{ news.author }}</p>
     <p><strong>Fuente:</strong> {{ news.source }}</p>
     <p><strong>Publicado:</strong> {{ news.publishedAt | date }}</p>
-    <a *ngIf="news.url" [href]="news.url" target="_blank" class="read-more">Leer más</a>
+    <a *ngIf="news.url" [href]="news.url" target="_blank">Leer más</a>
   </div>
 </div>

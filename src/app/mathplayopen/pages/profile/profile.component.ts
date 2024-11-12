@@ -1,22 +1,40 @@
-import { Component } from '@angular/core';
-import {User} from '../../models/user.entity';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
+import {Component, OnInit} from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {InstitutionDto, StudentDto, UserDto} from '../../models/student-profile.entity';
+import {StudentProfileService} from '../../services/student-profile.service';
+import {CommonModule, NgIf} from '@angular/common'; // Importa FormsModule aquí
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    NgIf,
+    CommonModule
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
-  user: User = new User(1, 'username', 'Full Name', 'user@example.com', '', 'User'); // Ejemplo de datos iniciales
+export class ProfileComponent implements OnInit{
+  user: UserDto | null = null;
+  student: StudentDto | null = null;
+  institution: InstitutionDto | null = null;
+  defaultImage = 'https://thumbs.dreamstime.com/b/var%C3%B3n-silhoutte-avatar-defecto-imagen-del-perfil-placeholder-de-la-foto-130555183.jpg';
 
-  constructor() {}
+  constructor(private userService: StudentProfileService) {}
 
-  onSubmit() {
-    console.log('User data submitted:', this.user);
-
+  ngOnInit(): void {
+    this.userService.getCurrentUser ().subscribe(user => {
+      this.user = user;
+      if (user) {
+        this.userService.getStudentById(user.id).subscribe(student => {
+          this.student = student;
+          if (student) {
+            this.userService.getInstitutionById(student.institutionId).subscribe(institution => {
+              this.institution = institution;
+            });
+          }
+        });
+      }
+    });
   }
 }
